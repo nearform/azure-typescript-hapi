@@ -3,7 +3,6 @@
 import * as Hapi from 'hapi'
 
 // Create a server with a host and port
-// const server = new Hapi.Server()
 const server: Hapi.Server = new Hapi.Server()
 server.connection({
   host: 'localhost',
@@ -14,14 +13,14 @@ server.connection({
 server.route({
   method: 'GET',
   path:'/',
-  handler: (request, reply) =>
+  handler: (request: Hapi.Request, reply: Hapi.IReply) =>
     reply({ body: 'hello world' }),
 })
 
 server.route({
   method: 'GET',
   path: '/{name}',
-  handler: (request, reply) =>
+  handler: (request: Hapi.Request, reply: Hapi.IReply) =>
     reply({ body: `Hello, ${encodeURIComponent(request.params.name)}!` }),
 })
 
