@@ -12,5 +12,9 @@
     "hapi"
   ],
   "author": "Dr. Jan-Jan van der Vyver",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^16.4.3",
+    "typescript": "^2.3.4"
+  }
 }
