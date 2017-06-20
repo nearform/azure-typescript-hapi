@@ -1,0 +1,16 @@
+{
+  "name": "azure-typescript-hapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "azure",
+    "typescript",
+    "hapi"
+  ],
+  "author": "Dr. Jan-Jan van der Vyver",
+  "license": "ISC"
+}
