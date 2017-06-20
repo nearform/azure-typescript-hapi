@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "tsc",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm run watch:transpile & npm run watch:serve",
+    "watch:serve": "nodemon build/index.js",
+    "watch:transpile": "tsc -w"
   },
   "keywords": [
     "azure",
@@ -14,10 +19,11 @@
   "author": "Dr. Jan-Jan van der Vyver",
   "license": "ISC",
   "dependencies": {
+    "@types/hapi": "^16.1.5",
     "hapi": "^16.4.3",
     "typescript": "^2.3.4"
   },
   "devDependencies": {
-    "@types/hapi": "^16.1.5"
+    "nodemon": "^1.11.0"
   }
 }
