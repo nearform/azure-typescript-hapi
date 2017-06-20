@@ -13,14 +13,14 @@ server.connection({
 server.route({
   method: 'GET',
   path:'/',
-  handler: (request: Hapi.Request, reply: Hapi.IReply) =>
-    reply({ body: 'hello world' }),
+  handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
+    reply({ body: 'Hello, world' }),
 })
 
 server.route({
   method: 'GET',
   path: '/{name}',
-  handler: (request: Hapi.Request, reply: Hapi.IReply) =>
+  handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
     reply({ body: `Hello, ${encodeURIComponent(request.params.name)}!` }),
 })
 

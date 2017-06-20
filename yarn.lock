@@ -2,6 +2,56 @@
 # yarn lockfile v1
 
 
+"@types/boom@*":
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/@types/boom/-/boom-4.3.5.tgz#9ccca31e08c989bce483bd76b2de798526c608f5"
+
+"@types/catbox@*":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@types/catbox/-/catbox-7.1.1.tgz#170e50c35f047163e709c43e8bab551548a7d429"
+  dependencies:
+    "@types/boom" "*"
+
+"@types/hapi@^16.1.5":
+  version "16.1.5"
+  resolved "https://registry.yarnpkg.com/@types/hapi/-/hapi-16.1.5.tgz#f74aee6207d4efdc37f9c694424a254e639f03be"
+  dependencies:
+    "@types/boom" "*"
+    "@types/catbox" "*"
+    "@types/joi" "*"
+    "@types/mimos" "*"
+    "@types/node" "*"
+    "@types/podium" "*"
+    "@types/shot" "*"
+
+"@types/joi@*":
+  version "10.4.0"
+  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-10.4.0.tgz#a4de40cdf2462c7e1c83eb47ca3e19177bcc2ae8"
+
+"@types/mime-db@*":
+  version "1.27.0"
+  resolved "https://registry.yarnpkg.com/@types/mime-db/-/mime-db-1.27.0.tgz#9bc014a1fd1fdf47649c1a54c6dd7966b8284792"
+
+"@types/mimos@*":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/mimos/-/mimos-3.0.0.tgz#20356e7381e9529c2a7e764c798be5a48cdeff96"
+  dependencies:
+    "@types/mime-db" "*"
+
+"@types/node@*":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.0.tgz#acaa89247afddc7967e9902fd11761dadea1a555"
+
+"@types/podium@*":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/podium/-/podium-1.0.0.tgz#bfaa2151be2b1d6109cc69f7faa9dac2cba3bb20"
+
+"@types/shot@*":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@types/shot/-/shot-3.4.0.tgz#459477c5187d3ebd303660ab099e7e9e0f3b656f"
+  dependencies:
+    "@types/node" "*"
+
 accept@2.x.x:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/accept/-/accept-2.1.4.tgz#887af54ceee5c7f4430461971ec400c61d09acbb"
