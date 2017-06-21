@@ -54,19 +54,43 @@ server.route({
     )
 })
 
-
 server.route({
-  method: 'GET',
-  path:'/',
+  method: 'POST',
+  path:'/tasks',
   handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
-    reply({ body: 'Hello, world' }),
+      pool.query(
+        SQL`
+          INSERT INTO tasks (name)
+          VALUES (${request.payload.name})
+        `,
+        (err, res) => {
+          if (err) {
+            return console.error('error running query', err)
+          }
+          reply('')
+        }
+      )
 })
 
 server.route({
-  method: 'GET',
-  path: '/{name}',
+  method: 'POST',
+  path:'/tasks/:taskId',
   handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
-    reply({ body: `Hello, ${encodeURIComponent(request.params.name)}!` }),
+      pool.query(
+        SQL`
+          UPDATE tasks
+          SET ${request.payload.name
+            ? `name = ${request.payload.name}`
+            : `is_completed = TRUE`}
+          WHERE id = request.params.taskId
+        `,
+        (err, res) => {
+          if (err) {
+            return console.error('error running query', err)
+          }
+          reply('')
+        }
+      )
 })
 
 // Start the server
