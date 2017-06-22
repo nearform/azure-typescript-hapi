@@ -6,7 +6,7 @@ import * as Hapi from 'hapi'
 const server: Hapi.Server = new Hapi.Server()
 server.connection({
   host: 'localhost',
-  port: 8000,
+  port: process.env.PORT || 8000,
 })
 
 // Add the routes
