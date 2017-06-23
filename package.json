@@ -2,7 +2,11 @@
   "name": "azure-typescript-hapi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
+  "engines": {
+    "npm": ">=3",
+    "node": ">=6"
+  },
   "scripts": {
     "postinstall": "tsc",
     "start": "node build/index.js",

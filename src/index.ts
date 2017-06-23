@@ -35,7 +35,7 @@ pool.on('error', function (err, client) {
 const server: Hapi.Server = new Hapi.Server()
 server.connection({
   host: 'localhost',
-  port: 8000,
+  port: process.env.PORT || 1337,
 })
 
 // Add the routes
