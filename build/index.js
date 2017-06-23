@@ -10,7 +10,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        return reply({ body: 'Hello, world' });
+        return reply({ body: 'This is the wrong version' });
     },
 });
 server.route({
