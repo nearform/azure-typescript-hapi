@@ -4,12 +4,16 @@ var Hapi = require("hapi");
 var pg = require("pg");
 var SQL = require('sql-template-strings');
 var pgConfig = {
-    database: 'appdb',
-    host: 'localhost',
-    port: 5432,
+    user: process.env.DBUSER || 'nearform',
+    password: process.env.DBPASS || 'supersecretpassword',
+    database: process.env.DBNAME || 'appdb',
+    host: process.env.DBHOST || 'localhost',
+    port: process.env.DBPORT || 5432,
     max: 10,
     idleTimeoutMillis: 30000,
+    ssl: process.env.DBHOST && process.env !== 'localhost' ? true : false,
 };
+console.log("pgConfig =", pgConfig);
 var pool = new pg.Pool(pgConfig);
 pool.on('error', function (err, client) {
     console.error('idle client error', err.message, err.stack);

@@ -6,15 +6,18 @@ const SQL = require('sql-template-strings') // lacks types
 
 // note: all config is optional and the environment variables
 // will be read if the config is not present
-const pgConfig = {
-  // user: 'foo', // env var: PGUSER
-  database: 'appdb', // env var: PGDATABASE
-  // password: 'secret', // env var: PGPASSWORD
-  host: 'localhost', // Server hosting the postgres database
-  port: 5432, // env var: PGPORT
+const pgConfig: pg.PoolConfig = {
+  user: process.env.DBUSER || 'nearform',
+  password: process.env.DBPASS || 'supersecretpassword',
+  database: process.env.DBNAME || 'appdb',
+  host: process.env.DBHOST || 'localhost',
+  port: process.env.DBPORT || 5432,
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+  ssl: process.env.DBHOST && process.env !== 'localhost' ? true : false,
 }
+
+console.log(`pgConfig =`, pgConfig)
 
 // this initializes a connection pool
 // it will keep idle connections open for idleTimeoutMillis
