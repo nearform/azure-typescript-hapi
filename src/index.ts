@@ -2,20 +2,23 @@
 
 import * as Hapi from 'hapi'
 import * as pg from 'pg'
+import * as Joi from 'joi'
 const SQL = require('sql-template-strings') // lacks types
 
 // note: all config is optional and the environment variables
 // will be read if the config is not present
 const pgConfig: pg.PoolConfig = {
-  user: process.env.DBUSER || 'nearform',
-  password: process.env.DBPASS || 'supersecretpassword',
-  database: process.env.DBNAME || 'appdb',
+  user: process.env.DBUSER, // || 'manager',
+  password: process.env.DBPASS, // || 'supersecretpassword',
+  database: process.env.DBNAME || 'ath',
   host: process.env.DBHOST || 'localhost',
   port: process.env.DBPORT || 5432,
   max: 10, // max number of clients in the pool
   idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   ssl: process.env.DBHOST && process.env !== 'localhost' ? true : false,
 }
+if (!process.env.DBUSER) delete pgConfig.user
+if (!process.env.DBPASS) delete pgConfig.password
 
 console.log(`pgConfig =`, pgConfig)
 
@@ -60,20 +63,27 @@ server.route({
 server.route({
   method: 'POST',
   path:'/tasks',
-  handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
-      pool.query(
-        SQL`
-          INSERT INTO tasks (name)
-          VALUES (${request.payload.name})
-        `,
-        (err, res) => {
-          if (err) {
-            console.error('error running query', err)
-            throw err
+  config: {
+    validate: {
+      payload: Joi.object().required().keys({
+        name: Joi.string().min(1).required()
+      }),
+    },
+    handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
+        pool.query(
+          SQL`
+            INSERT INTO tasks (name)
+            VALUES (${request.payload.name})
+          `,
+          (err, res) => {
+            if (err) {
+              console.error('error running query', err)
+              throw err
+            }
+            reply('')
           }
-          reply('')
-        }
-      )
+        )
+  },
 })
 
 server.route({

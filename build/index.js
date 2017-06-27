@@ -2,17 +2,22 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Hapi = require("hapi");
 var pg = require("pg");
+var Joi = require("joi");
 var SQL = require('sql-template-strings');
 var pgConfig = {
-    user: process.env.DBUSER || 'nearform',
-    password: process.env.DBPASS || 'supersecretpassword',
-    database: process.env.DBNAME || 'appdb',
+    user: process.env.DBUSER,
+    password: process.env.DBPASS,
+    database: process.env.DBNAME || 'ath',
     host: process.env.DBHOST || 'localhost',
     port: process.env.DBPORT || 5432,
     max: 10,
     idleTimeoutMillis: 30000,
     ssl: process.env.DBHOST && process.env !== 'localhost' ? true : false,
 };
+if (!process.env.DBUSER)
+    delete pgConfig.user;
+if (!process.env.DBPASS)
+    delete pgConfig.password;
 console.log("pgConfig =", pgConfig);
 var pool = new pg.Pool(pgConfig);
 pool.on('error', function (err, client) {
@@ -39,16 +44,23 @@ server.route({
 server.route({
     method: 'POST',
     path: '/tasks',
-    handler: function (request, reply) {
-        return pool.query((_a = ["\n          INSERT INTO tasks (name)\n          VALUES (", ")\n        "], _a.raw = ["\n          INSERT INTO tasks (name)\n          VALUES (", ")\n        "], SQL(_a, request.payload.name)), function (err, res) {
-            if (err) {
-                console.error('error running query', err);
-                throw err;
-            }
-            reply('');
-        });
-        var _a;
-    }
+    config: {
+        validate: {
+            payload: Joi.object().required().keys({
+                name: Joi.string().min(1).required()
+            }),
+        },
+        handler: function (request, reply) {
+            return pool.query((_a = ["\n            INSERT INTO tasks (name)\n            VALUES (", ")\n          "], _a.raw = ["\n            INSERT INTO tasks (name)\n            VALUES (", ")\n          "], SQL(_a, request.payload.name)), function (err, res) {
+                if (err) {
+                    console.error('error running query', err);
+                    throw err;
+                }
+                reply('');
+            });
+            var _a;
+        }
+    },
 });
 server.route({
     method: 'POST',
