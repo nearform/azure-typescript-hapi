@@ -32,7 +32,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        return reply('Go to /tasks to use this site');
+        return reply("This should've failed. Go to /tasks to use this site");
     },
 });
 server.route({
