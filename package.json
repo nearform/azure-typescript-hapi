@@ -36,6 +36,7 @@
   "devDependencies": {
     "code": "^4.1.0",
     "lab": "^14.1.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "pre-commit": "^1.2.2"
   }
 }
