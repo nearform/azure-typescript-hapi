@@ -49,7 +49,7 @@ server.route({
   method: 'GET',
   path:'/',
   handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
-    reply(`This should've failed. Go to /tasks to use this site`),
+    reply(`Go to /tasks to use this site`),
 })
 
 server.route({

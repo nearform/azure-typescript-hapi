@@ -15,6 +15,7 @@
     "watch:serve": "nodemon build/index.js",
     "watch:transpile": "tsc -w"
   },
+  "pre-commit": "test",
   "keywords": [
     "azure",
     "typescript",

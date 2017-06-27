@@ -11,7 +11,7 @@ const expect = Code.expect
 
 lab.experiment('lab', function () {
   lab.test('exists', function (done) {
-    Code.expect(null).to.exist()
+    Code.expect(lab).to.exist()
     done()
   })
 
