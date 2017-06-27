@@ -30,6 +30,13 @@ server.connection({
 });
 server.route({
     method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        return reply('Go to /tasks to use this site');
+    },
+});
+server.route({
+    method: 'GET',
     path: '/tasks',
     handler: function (request, reply) {
         return pool.query((_a = ["SELECT * FROM tasks WHERE is_completed = false"], _a.raw = ["SELECT * FROM tasks WHERE is_completed = false"], SQL(_a)), function (err, res) {
@@ -39,7 +46,7 @@ server.route({
             reply(res.rows);
         });
         var _a;
-    }
+    },
 });
 server.route({
     method: 'POST',

@@ -47,6 +47,13 @@ server.connection({
 // Add the routes
 server.route({
   method: 'GET',
+  path:'/',
+  handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
+    reply('Go to /tasks to use this site'),
+})
+
+server.route({
+  method: 'GET',
   path:'/tasks',
   handler: (request: Hapi.Request, reply: Hapi.ReplyNoContinue) =>
     pool.query(
@@ -57,7 +64,7 @@ server.route({
         }
         reply(res.rows)
       }
-    )
+    ),
 })
 
 server.route({
