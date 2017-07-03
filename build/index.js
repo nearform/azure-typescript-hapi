@@ -19,7 +19,6 @@ server.route({
     handler: function (request, reply) {
         var response = { body: "Hello, " + encodeURIComponent(request.params.name) + "!" };
         request.log('the response/reply is', response);
-        request.logger.info('In handler %s', request.path);
         reply(response);
     },
 });
@@ -29,7 +28,6 @@ server.register(require('hapi-pino'), function (err) {
         process.exit(1);
     }
     server.app.logger.warn('Pino is registered');
-    server.logger().info('another way for accessing it');
     server.log(['subsystem'], 'third way for accessing it');
     server.start(function (err) {
         if (err) {

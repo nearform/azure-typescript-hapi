@@ -27,6 +27,7 @@
     "@types/pino": "^3.0.1",
     "hapi": "^16.4.3",
     "hapi-pino": "^1.6.0",
+    "pino": "^4.6.0",
     "typescript": "^2.3.4"
   },
   "devDependencies": {

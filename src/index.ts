@@ -27,7 +27,8 @@ server.route({
     request.log('the response/reply is', response)
 
     // you can also use a pino instance, which will be faster
-    request.logger.info('In handler %s', request.path)
+    // hidden because .logger is not a recognised as a type
+    // request.logger.info('In handler %s', request.path)
 
     reply(response)
   },
@@ -43,7 +44,8 @@ server.register(require('hapi-pino'), (err) => {
   server.app.logger.warn('Pino is registered')
 
   // also as a decorated API
-  server.logger().info('another way for accessing it')
+  // hidden because .logger() is not a recognised as a type
+  // server.logger().info('another way for accessing it')
 
   // and through Hapi standard logging system
   server.log(['subsystem'], 'third way for accessing it')

@@ -1147,7 +1147,7 @@ pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-pino@^4.2.4:
+pino@^4.2.4, pino@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/pino/-/pino-4.6.0.tgz#68e78ee9f3799a208a120a4533207943f38f6c5d"
   dependencies:
