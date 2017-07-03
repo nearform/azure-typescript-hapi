@@ -10,20 +10,32 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        return reply({ body: 'This is the wrong version' });
+        return reply({ body: 'Hello, world' });
     },
 });
 server.route({
     method: 'GET',
     path: '/{name}',
     handler: function (request, reply) {
-        return reply({ body: "Hello, " + encodeURIComponent(request.params.name) + "!" });
+        var response = { body: "Hello, " + encodeURIComponent(request.params.name) + "!" };
+        request.log('the response/reply is', response);
+        request.logger.info('In handler %s', request.path);
+        reply(response);
     },
 });
-server.start(function (err) {
+server.register(require('hapi-pino'), function (err) {
     if (err) {
-        throw err;
+        console.error(err);
+        process.exit(1);
     }
-    console.log('Server running at:', server.info.uri);
+    server.app.logger.warn('Pino is registered');
+    server.logger().info('another way for accessing it');
+    server.log(['subsystem'], 'third way for accessing it');
+    server.start(function (err) {
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+    });
 });
 //# sourceMappingURL=index.js.map
