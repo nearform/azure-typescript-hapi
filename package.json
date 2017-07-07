@@ -28,6 +28,7 @@
     "hapi": "^16.4.3",
     "hapi-pino": "^1.6.0",
     "pino": "^4.6.0",
+    "pino-eventhub": "^0.0.1",
     "typescript": "^2.3.4"
   },
   "devDependencies": {
