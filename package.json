@@ -9,7 +9,7 @@
   },
   "scripts": {
     "postinstall": "tsc",
-    "start": "node build/index.js",
+    "start": "node build/index.js | pino-eventhub",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm run watch:transpile & npm run watch:serve",
     "watch:serve": "nodemon build/index.js",
