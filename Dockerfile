@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 
 # Set env
 ENV NODE_ENV production
+ENV HOST "0.0.0.0"
 
 # Install app dependencies
 COPY package.json /usr/src/app/

@@ -5,7 +5,7 @@ import * as Hapi from 'hapi'
 // Create a server with a host and port
 const server: Hapi.Server = new Hapi.Server()
 server.connection({
-  host: 'localhost',
+  host: process.env.HOST || 'localhost',
   port: process.env.PORT || 1337,
 })
 
