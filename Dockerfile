@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 # Set env
 ENV NODE_ENV production
 ENV HOST "0.0.0.0"
+ENV PORT 3000
 
 # Install app dependencies
 COPY package.json /usr/src/app/
@@ -14,10 +15,10 @@ RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
+# Build using typescript
 RUN npm run postinstall
 
-EXPOSE 3000
-# EXPOSE $PORT
-# CMD [ "npm", "start" ]
-# ENTRYPOINT npm start
+# Open port to access server
+EXPOSE $PORT
+# Execute as bash script to pass along env variables
 CMD npm start
